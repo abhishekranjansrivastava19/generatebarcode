@@ -38,8 +38,8 @@ app.get("/generate-barcode", (req, res) => {
     {
         bcid: 'code128',
         text: barcodeData,
-        scale: 0.5,
-        height: 5,
+        scale: 0.1,
+        height: 15,
         includetext: true,
         textxalign: 'center',
         textsize: 6,
