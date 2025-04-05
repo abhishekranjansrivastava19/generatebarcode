@@ -6,30 +6,6 @@ const app = express();
 const port = 3000;
 app.use(cors());
 // GET /generate-qr?data=YourTextHere
-app.get("/generate-qr", async (req, res) => {
-  const { name, class: cls, section, phone, fatherName, address } = req.query;
-
-  console.log(req.query);
-  if (!name || !cls || !section || !phone || !fatherName || !address) {
-    return res.status(400).send("Missing one or more required fields");
-  }
-
-  const qrContent =
-    `Name: ${name}\n` +
-    `Class: ${cls}\n` +
-    `Section: ${section}\n` +
-    `Phone: ${phone}\n` +
-    `Father's Name: ${fatherName}\n` +
-    `Address: ${address}`;
-
-  try {
-    res.setHeader("Content-Type", "image/png");
-    QRCode.toFileStream(res, qrContent);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error generating QR code");
-  }
-});
 
 app.get("/generate-barcode", (req, res) => {
   const {
@@ -63,7 +39,7 @@ app.get("/generate-barcode", (req, res) => {
         bcid: 'code128',
         text: barcodeData,
         scale: 2,
-        height: 12,
+        height: 10,
         includetext: true,
         textxalign: 'center',
         textsize: 10,
