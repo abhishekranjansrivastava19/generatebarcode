@@ -3,7 +3,7 @@ const QRCode = require("qrcode");
 const cors = require("cors");
 const bwipjs = require("bwip-js");
 const app = express();
-const port = 3000;
+const port = 3001;
 app.use(cors());
 // GET /generate-qr?data=YourTextHere
 app.get("/generate-qr", async (req, res) => {
