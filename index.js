@@ -72,7 +72,7 @@ app.get("/generate-barcode", (req, res) => {
           <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
           <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
           <img src="data:image/png;base64,${base64Image}" /><br/>
-          <div style="margin-top: 5px; font-weight:bold;">${code}</div>
+          <div style="margin-top: 5px; font-weight:bold;">${barcodeData}</div>
         </body>
       </html>
       `;
