@@ -12,37 +12,50 @@ app.get("/generate-barcode", (req, res) => {
     name,
     class: cls,
     section,
-    // phone,
-    // fatherName,
-    // address,
+    session,
+    phone,
+    fatherName,
+    scholarno,
   } = req.query;
 
-  if (!name || !cls || !section) {
+  if (
+    !name ||
+    !fatherName ||
+    !cls ||
+    !section ||
+    !session ||
+    !scholarno ||
+    !phone
+  ) {
     return res.status(400).send("Missing one or more required fields");
   }
 
-//   const barcodeData =
-//     `name: ${name}\n` +
-//     `class: ${cls}\n` +
-//     `section: ${section}\n` +
-//     `phone: ${phone}\n` +
-//     `fatherName: ${fatherName}\n` +
-//     `address: ${address}`;
+  //   const barcodeData =
+  //     `name: ${name}\n` +
+  //     `class: ${cls}\n` +
+  //     `section: ${section}\n` +
+  //     `phone: ${phone}\n` +
+  //     `fatherName: ${fatherName}\n` +
+  //     `address: ${address}`;
 
-    const barcodeData =
-    `${name}-` + 
-    `${cls}-` + 
-    `${section}`;
+  // const barcodeData =
+  // `${name}-` +
+  // `${cls}-` +
+  // `${section}`;
+
+  const first4Name = name.trim().toUpperCase().substring(0, 4);
+  const last5Phone = phone.trim().slice(-5);
+  const barcodeData = `${scholarno}${first4Name}${last5Phone}`;
 
   bwipjs.toBuffer(
     {
-        bcid: 'code128',
-        text: barcodeData,
-        scale: 0.01,
-        height: 15,
-        includetext: true,
-        textxalign: 'center',
-        textsize: 4,
+      bcid: "code128",
+      text: barcodeData,
+      scale: 2,
+      height: 15,
+      includetext: true,
+      textxalign: "center",
+      textsize: 12,
     },
     (err, pngBuffer) => {
       if (err) {
@@ -53,13 +66,15 @@ app.get("/generate-barcode", (req, res) => {
       // Embed barcode in browser page
       const base64Image = pngBuffer.toString("base64");
       const html = `
-        <html>
-          <body style="text-align:center; margin-top:50px;">
-            <h3>Barcode</h3>
-            <img src="data:image/png;base64,${base64Image}" />
-            <p>Right-click to copy or save</p>
-          </body>
-        </html>
+      <html>
+        <body style="text-align:center; font-family:Arial;">
+          <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
+          <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
+          <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+          <img src="data:image/png;base64,${base64Image}" /><br/>
+          <div style="margin-top: 5px; font-weight:bold;">${code}</div>
+        </body>
+      </html>
       `;
       res.send(html);
     }
