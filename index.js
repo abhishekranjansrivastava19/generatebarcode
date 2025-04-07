@@ -51,11 +51,11 @@ app.get("/generate-barcode", (req, res) => {
     {
       bcid: "code128",
       text: barcodeData,
-      scale: 5,
-      height: 15,
+      scale: 2,
+      height: 10,
       includetext: true,
       textxalign: "center",
-      textsize: 12,
+      textsize: 13,
     },
     (err, pngBuffer) => {
       if (err) {
