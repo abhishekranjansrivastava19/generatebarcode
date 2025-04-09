@@ -78,35 +78,33 @@ app.get("/generate-barcode", (req, res) => {
       // </html>
       // `;
       const html = `
-        <html>
-          <head>
-            <style>
-              body {
-                font-family: Arial, sans-serif;
-                text-align: center;
-                margin-top: 40px;
-              }
-              .text-block {
-                font-size: 16px;
-                margin-bottom: 8px;
-                user-select: text;
-              }
-              img {
-                margin: 10px 0;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="text-block">${cls} (${section}) (${session})</div>
-            <div class="text-block" style="font-size: 24px; font-weight: bold;">
-              ${name.toUpperCase()}
-            </div>
-            <div class="text-block">S/o ${fatherName.toUpperCase()}</div>
-            <img src="data:image/png;base64,${base64Image}" />
-            <div class="text-block">${barcodeData}</div>
-          </body>
-        </html>
-      `;
+<html>
+  <body style="font-family:Arial; display:flex; justify-content:center; align-items:center; height:100vh;">
+    <table style="border:1px solid #000; padding:20px; text-align:center;">
+      <tr>
+        <td style="font-size:16px; font-weight:bold;">${cls} (${section}) (${session})</td>
+      </tr>
+      <tr>
+        <td style="font-size:22px; font-weight:bold; padding-top:10px;">${name.toUpperCase()}</td>
+      </tr>
+      <tr>
+        <td style="font-size:16px; padding-bottom:10px;">S/o ${fatherName.toUpperCase()}</td>
+      </tr>
+      <tr>
+        <td>
+          <img 
+            src="data:image/png;base64,${base64Image}" 
+            style="margin-top:5px; margin-bottom:5px;" 
+          />
+        </td>
+      </tr>
+      <tr>
+        <td style="font-size:14px;">${barcodeData}</td>
+      </tr>
+    </table>
+  </body>
+</html>
+`;
       res.send(html);
     }
   );
