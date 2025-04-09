@@ -65,18 +65,38 @@ app.get("/generate-barcode", (req, res) => {
 
       // Embed barcode in browser page
       const base64Image = pngBuffer.toString("base64");
+      // const html = `
+      // <html>
+      //   <body style="text-align:center; font-family:Arial;">
+      //     <div style="margin-top: 20px;">
+      //     <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
+      //     <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
+      //     <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+      //     <img src="data:image/png;base64,${base64Image}" /><br/>
+      //     </div>
+      //   </body>
+      // </html>
+      // `;
       const html = `
-      <html>
-        <body style="text-align:center; font-family:Arial;">
-          <div style="margin-top: 20px;">
-          <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
-          <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
-          <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
-          <img src="data:image/png;base64,${base64Image}" /><br/>
-          </div>
-        </body>
-      </html>
-      `;
+  <html>
+    <body style="font-family:Arial; text-align: center;">
+      <div style="margin-top: 20px;">
+        <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
+        <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
+        <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+        
+        <img 
+          src="data:image/png;base64,${base64Image}" 
+          style="margin-top: 10px; cursor: pointer;" 
+          title="Right-click to copy barcode image"
+        />
+        <br/>
+        <div style="font-size: 13px; margin-top: 5px;">${barcodeData}</div>
+      </div>
+    </body>
+  </html>
+`;
+
       res.send(html);
     }
   );
