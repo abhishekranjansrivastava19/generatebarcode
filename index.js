@@ -78,25 +78,35 @@ app.get("/generate-barcode", (req, res) => {
       // </html>
       // `;
       const html = `
-  <html>
-    <body style="font-family:Arial; text-align: center;">
-      <div style="margin-top: 20px;">
-        <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
-        <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
-        <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
-        
-        <img 
-          src="data:image/png;base64,${base64Image}" 
-          style="margin-top: 10px; cursor: pointer;" 
-          title="Right-click to copy barcode image"
-        />
-        <br/>
-        <div style="font-size: 13px; margin-top: 5px;">${barcodeData}</div>
-      </div>
-    </body>
-  </html>
-`;
-
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin-top: 40px;
+              }
+              .text-block {
+                font-size: 16px;
+                margin-bottom: 8px;
+                user-select: text;
+              }
+              img {
+                margin: 10px 0;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="text-block">${cls} (${section}) (${session})</div>
+            <div class="text-block" style="font-size: 24px; font-weight: bold;">
+              ${name.toUpperCase()}
+            </div>
+            <div class="text-block">S/o ${fatherName.toUpperCase()}</div>
+            <img src="data:image/png;base64,${base64Image}" />
+            <div class="text-block">${barcodeData}</div>
+          </body>
+        </html>
+      `;
       res.send(html);
     }
   );
