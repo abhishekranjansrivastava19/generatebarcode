@@ -55,7 +55,7 @@ app.get("/generate-barcode", (req, res) => {
       height: 10,
       includetext: true,
       textxalign: "center",
-      textsize: 20,
+      textsize: 15,
     },
     (err, pngBuffer) => {
       if (err) {
