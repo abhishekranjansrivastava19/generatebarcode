@@ -39,7 +39,7 @@ app.get("/generate-barcode", (req, res) => {
     {
       bcid: "code128",
       text: barcodeData,
-      scale: 2,
+      scale: 1.5,
       height: 9,
       includetext: true,
       textxalign: "center",
@@ -53,18 +53,7 @@ app.get("/generate-barcode", (req, res) => {
 
       // Embed barcode in browser page
       const base64Image = pngBuffer.toString("base64");
-      // const html = `
-      // <html>
-      //   <body style="text-align:center; font-family:Arial;">
-      //     <div style="margin-top: 20px;">
-      //     <div style="font-size: 14px; font-weight:bold;">${cls} (${section}) (${session})</div>
-      //     <h2 style="margin: 5px 0;">${name.toUpperCase()}</h2>
-      //     <div style="margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
-      //     <img src="data:image/png;base64,${base64Image}" /><br/>
-      //     </div>
-      //   </body>
-      // </html>
-      // `;
+     
       const html = `
 <html>
   <body style="font-family: Arial; display: flex; justify-content: center; align-items: center; padding: 10px;">
@@ -72,7 +61,7 @@ app.get("/generate-barcode", (req, res) => {
       <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
       <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
       <div style="font-size: 15px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
-      <img src="data:image/png;base64,${base64Image}" alt="Barcode" style="width: 90%; height: auto;" />
+      <img src="data:image/png;base64,${base64Image}" alt="Barcode" style="width: 250px; height: auto;" />
     </div>
   </body>
 </html>
