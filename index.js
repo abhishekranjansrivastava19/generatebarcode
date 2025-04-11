@@ -30,6 +30,7 @@ app.get("/generate-barcode", (req, res) => {
     return res.status(400).send("Missing one or more required fields");
   }
 
+
   const first4Name = name.trim().toUpperCase().substring(0, 4);
   const last5Phone = phone.trim().slice(-5);
   const barcodeData = `${scholarno}${first4Name}${last5Phone}`;
@@ -67,10 +68,10 @@ app.get("/generate-barcode", (req, res) => {
       const html = `
 <html>
   <body style="font-family: Arial; display: flex; justify-content: center; align-items: center; padding: 50px;">
-    <div style="border: 1px solid #000; padding: 10px; text-align: center; width: 400px;">
-      <div style="font-size: 20pt; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
-      <div style="font-size: 20pt; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
-      <div style="font-size: 20pt; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+    <div style="border: 1px solid #000; padding: 10px; text-align: center; width: 350px;">
+      <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
+      <div style="font-size: 25px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
+      <div style="font-size: 25px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
       <img src="data:image/png;base64,${base64Image}" alt="Barcode" style="width: 100%; height: auto;" />
     </div>
   </body>
