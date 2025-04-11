@@ -51,7 +51,7 @@ app.get("/generate-barcode", (req, res) => {
     {
       bcid: "code128",
       text: barcodeData,
-      scale: 2,
+      scale: 1,
       height: 10,
       includetext: true,
       textxalign: "center",
@@ -81,9 +81,9 @@ app.get("/generate-barcode", (req, res) => {
 <html>
   <body style="font-family: Arial; display: flex; justify-content: center; align-items: center; padding: 40px;">
     <div style="border: 1px solid #000; padding: 20px; text-align: center; width: 350px;">
-      <div style="font-size: 14px; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
-      <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
-      <div style="font-size: 14px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+      <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
+      <div style="font-size: 25px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
+      <div style="font-size: 25px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
       <img src="data:image/png;base64,${base64Image}" alt="Barcode" style="width: 100%; height: auto;" />
     </div>
   </body>
