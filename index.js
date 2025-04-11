@@ -67,11 +67,11 @@ app.get("/generate-barcode", (req, res) => {
       // `;
       const html = `
 <html>
-  <body style="font-family: Arial; display: flex; justify-content: center; align-items: center; padding: 0px;">
+  <body style="font-family: Arial; display: flex; justify-content: center; align-items: center; padding: 10px;">
     <div style="border: 1px solid #000; padding: 10px; text-align: center; width: 350px;">
       <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${cls} (${section}) (${session})</div>
-      <div style="font-size: 25px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
-      <div style="font-size: 25px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
+      <div style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">${name.toUpperCase()}</div>
+      <div style="font-size: 20px; margin-bottom: 10px;">S/o ${fatherName.toUpperCase()}</div>
       <img src="data:image/png;base64,${base64Image}" alt="Barcode" style="width: 100%; height: auto;" />
     </div>
   </body>
